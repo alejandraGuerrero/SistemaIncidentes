@@ -30,7 +30,9 @@
                 </p:column>  
 
                 <p:column headerText="Fecha" style="width:24%">  
-                    <h:outputText  value="#{car.inc_fecha}"/>  
+                    <h:outputText  value="#{car.inc_fecha}">
+                       <f:convertDateTime timeZone="America/Bogota" pattern="yyyy-MM-dd HH:mm:ss"/>
+                    </h:outputText>  
                 </p:column>  
 
                                
@@ -45,10 +47,18 @@
                 <p:column headerText="Comuna" style="width:24%">  
                     <h:outputText  value="#{car.barrio.comuna}"/> 
                 </p:column>  
-                
+
                  <p:column headerText="Usuario Registro" style="width:24%">  
                      <h:outputText  value="#{car.usuario.usu_num_tel}"/> 
                 </p:column>  
+                
+                <p:column headerText="Editar" style="width:24%">  
+                     <p:commandButton value="Editar" /> 
+                </p:column> 
+                
+                 <p:column headerText="Eliminar" style="width:24%">  
+                     <p:commandButton value="Eliminar" /> 
+                </p:column> 
  
             </p:dataTable> 
             

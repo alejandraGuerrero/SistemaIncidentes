@@ -2170,19 +2170,27 @@ public class Administrador {
 //        }       
     
     }
-    
-   public  void listarIncidente(){
-       incidente  = new Incidente();
-       incidente.setInc_codigo(1);
-       incidente.setBarrio(new Barrio());
-       incidente.setInc_descripcion("Holaaa");
-       incidente.setInc_fecha(new Date());
-       incidente.setTipoIncidente(new TipoIncidente());
-       lstincidente.add(incidente);
-       for (Incidente incidente : lstincidente) {
-           System.out.println("incidente" + incidente.getInc_descripcion());
-       }
-   }
+    public void listarIncidente() {
+        incidente = new Incidente();
+        incidente.setInc_codigo(1);
+        incidente.setBarrio(new Barrio(1));
+        incidente.setInc_descripcion("Holaaa");
+        incidente.setInc_fecha(new Date());
+        incidente.setTipoIncidente(new TipoIncidente());
+        lstincidente.add(incidente);
+        for (int i = 0; i < 10; i++) {
+            incidente = new Incidente();
+            incidente.setInc_codigo(i+1);
+            incidente.setBarrio(new Barrio(1));
+            incidente.setInc_descripcion("Holaaa" + i);
+            incidente.setInc_fecha(new Date());
+            incidente.setTipoIncidente(new TipoIncidente());
+            lstincidente.add(incidente);
+        }
+        for (Incidente incidente : lstincidente) {
+            System.out.println("incidente" + incidente.getInc_descripcion());
+        }
+    }
   
 
 }
