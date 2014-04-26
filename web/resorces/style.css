@@ -1,0 +1,79 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28/03/2014, 10:33:13 AM
+    Author     : desarrollo4
+*/
+
+body{
+    background-image: url();
+    /*background-color: red;*/
+    /*background: #F1F1F1;*/
+}
+
+.style_tab_login{
+    width: 90%;
+    height: 95%;
+}
+
+.style_layoutUnit{
+    border: 0px!important;
+    /*background: #39C !important;*/
+}
+
+.style_inicio_sesion{
+    /*background-color: #39C !important;*/
+}
+
+.style_superior{
+    /*background: #39C!important;*/
+    color: #FFF;
+}
+
+.ui-widget-content{
+    background: #E7E7E7;
+    /*color: #FFF;*/
+    border: 0px solid #A8A8A8;
+}
+
+.ui-tabs .ui-tabs-nav{
+    background: #236688;
+    color: #FFF;
+}
+.ui-state-default{
+    background: #39C;
+    color: black;
+}
+/*.ui-widget-content .ui-state-default{
+    background: azure;
+}*/
+.ui-inputfield, .ui-widget-content .ui-inputfield, .ui-widget-header .ui-inputfield{
+    background:#B5C3CC;
+     color:#F0EEEE;
+}
+
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button{
+    background: #B5C3CC;
+     color:#F0EEEE;
+}
+
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited{
+    color: #FFF; 
+      background:#419CCE;
+}
+.ui-button-text-only .ui-button-text{
+     background: #083047;
+       color: #FFF;
+}
+
+.ui-messages-error, .ui-message-error{
+     background: #FFF;
+       color: #FF7367;
+}
+
+ .ui-layout-unit-content{
+   background: #F1F1F1 
+}

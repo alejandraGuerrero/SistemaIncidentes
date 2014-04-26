@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      contentType="text/html">
+    <h:head>
+        <title>Registro Incidencia</title>
+        <link href="#{facesContext.externalContext.requestContextPath}/resorces/style.css" rel="stylesheet" type="text/css"/>   
+    </h:head>
+    <h:body>
+        <h:form id="formregistroinci">
+            <center>
+                <h:outputLabel value="Registro Incidencia"/>
+            </center>
+            <p:outputPanel  style="width: 95%">
+                <p:commandButton update="formregistroinci" value="aqui" actionListener="#{administrador.cargarBarrio()}" immediate="true"/>
+                    <h:selectOneMenu id="selectOneMenuComuna" value="#{administrador.comuna.com_codigo}" style="width: 100%">
+                        <f:selectItem itemLabel="Select One" itemValue="1" />  
+                        <f:selectItems value="#{administrador.listaComunas}" var="comuna" itemLabel="#{comuna.com_nombre}" itemValue="#{comuna.com_codigo}" />                              
+                        <p:ajax update="formregistroinci" event="change"
+                                listener="#{administrador.cargarBarrio()}" /> 
+                    </h:selectOneMenu>
+
+                    <h:outputLabel id="outputLabelBarrio" value="Barrio" style="width: 100%"/>
+                    <h:selectOneMenu id="selectOneMenuBarrio" value="#{administrador.barrio.codigo_barrio}" style="width: 100%">
+                        <f:selectItem itemLabel="Select One" itemValue="0" />  
+                        <f:selectItems value="#{administrador.listabarrio}" var="barrio" itemLabel="#{barrio.nombre_barrio}" itemValue="#{barrio.codigo_barrio}" />                              
+                    </h:selectOneMenu>
+
+                    <h:outputLabel id="outputLabelTipoIncidencia" value="Tipo Incidencia" style="width: 100%"/>
+                    <h:selectOneMenu id="selectOneMenuTipoIncidencia" value="#" style="width: 100%">
+                        <f:selectItem itemLabel="Select One" itemValue="" />  
+                        <f:selectItem itemLabel="Incidencia 1" itemValue="1" />                              
+                    </h:selectOneMenu>              
+
+
+                    <h:outputLabel id="outputLabelDescripcion" value="Descripción" style="width: 100%"/>
+                    <h:inputText id="inputTextDescripcion" value="#{administrador.incidente.inc_descripcion}" title="Descripción" style="width: 100%"/>
+            </p:outputPanel>
+            
+            <h:panelGroup>
+                 <ui:include src="listarincidente.xhtml" />
+                
+            </h:panelGroup>
+        </h:form>
+    </h:body>
+</html>
+

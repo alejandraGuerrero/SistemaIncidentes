@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>.._Proyecto_..</title>
+        <link href="#{facesContext.externalContext.requestContextPath}/resorces/style.css" rel="stylesheet" type="text/css"/>  
+
+    </h:head>
+    <h:body>
+        <!--<h:body style="background-image: url('resorces/imgs/manizales.jpg'); background-repeat: no-repeat;"  >-->
+        <h:form styleClass="style_superior">
+            <p:layout styleClass="style_layoutUnit style_superior" fullPage="true">  
+
+                <p:layoutUnit  styleClass="style_layoutUnit"  position="north" size="100"  resizable="true" closable="true" collapsible="true">  
+                    <h:outputText value="Nombre proyecto" />  
+                </p:layoutUnit>  
+
+                <p:layoutUnit styleClass="style_layoutUnit" position="south" size="100"  resizable="true" closable="true" collapsible="true">  
+                    <h:outputText value="Pie de pagina" />  
+                </p:layoutUnit>  
+
+                <!--                <p:layoutUnit position="west" size="200"  resizable="true" closable="true" collapsible="true">  
+                                    <h:outputText value="Contenido 1" />  
+                                </p:layoutUnit>  -->
+
+                <p:layoutUnit styleClass="style_layoutUnit" position="east" size="500"  resizable="true" closable="true" collapsible="true" effect="drop">  
+
+                    <p:tabView  styleClass="style_tab_login " id="tabView" >  
+                        <p:tab  class="style_tab_login" id="tab1" title="Ingresar">  
+                            <h:panelGrid columns="2" cellpadding="10">                   
+
+                                <h:form id="form">  
+
+                                    <p:panel id="panel" >  
+
+                                        <p:messages id="msgs"/>  
+
+                                        <h:panelGrid columns="3">  
+                                            <h:outputLabel for="firstname" value="Usuario: *" />  
+                                            <p:inputText id="firstname" value="#{administrador.usuario.usu_num_tel}" required="true" label="Firstname">  
+                                                <f:validateLength minimum="2" />  
+                                            </p:inputText>  
+                                            <p:message for="firstname" display="icon"/>  
+
+                                            <h:outputLabel for="surname" value="Codigo: *" />  
+                                            <h:inputSecret id="surname" value="#{administrador.usuario.usu_pass}" label="Surname" required="true">  
+                                                <f:validateLength minimum="2" />  
+                                                <p:ajax update="msgSurname" event="keyup" />  
+                                            </h:inputSecret>  
+                                            <p:message for="surname" id="msgSurname" display="icon"/>  
+
+                                        </h:panelGrid>  
+                                        <center>
+                                            <p:commandButton id="btn" value="Ingresar" update="panel" action="registroincidencia"/>  
+                                        </center>
+                                    </p:panel>  
+
+                                </h:form>  
+
+                            </h:panelGrid>  
+                        </p:tab>  
+
+                        <p:tab id="tab2" title="Registrate">  
+                            <h:panelGrid columns="2" cellpadding="10">  
+
+                            </h:panelGrid>  
+                        </p:tab>  
+
+                    </p:tabView>
+                </p:layoutUnit>  
+
+                <p:layoutUnit  position="center">  
+                    <h:form>
+<!--                        <
+                        <m:map latitude="5.051552" width="100%" longitude="-75.485409" enableScrollWheelZoom="true"  id="map" 
+                               jsVariable="mapa" zoom="17"  partiallyTriggered="false"  height="300">
+                            <m:marker latitude="5.051552"  longitude="-75.485409" 
+
+                                      draggable="false" />
+
+                        </m:map>-->
+                    </h:form>  
+                </p:layoutUnit>  
+
+            </p:layout>  
+
+            <!--             -->
+
+        </h:form>
+    </h:body>
+
+</html>
+
