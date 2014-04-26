@@ -15,6 +15,10 @@ public class Barrio {
         string_est_codigo = "";
     }
 
+    public Barrio(int codigo_barrio) {
+        this.codigo_barrio = codigo_barrio;
+    }
+    
     public Barrio(int codigo_barrio, String nombre_barrio, String string_est_codigo, int comuna) {
         this.codigo_barrio = codigo_barrio;
         this.nombre_barrio = nombre_barrio;
