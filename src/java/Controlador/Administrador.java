@@ -23,10 +23,10 @@ public class Administrador {
     private Comuna comuna = new Comuna();
     private Incidente incidente = new Incidente();
     private List<Barrio> lstbarrio = new ArrayList<Barrio>();
-    private List<Incidente>lstincidente = new ArrayList<Incidente>();
+    private List<Incidente> lstincidente = new ArrayList<Incidente>();
 
     public Administrador() {
-        listarComuna();      
+        listarComuna();
         usuario = new Usuario();
         listarIncidente();
     }
@@ -71,7 +71,7 @@ public class Administrador {
         this.listaComunas = listaComunas;
     }
 
-     public List<Barrio> getListabarrio() {
+    public List<Barrio> getListabarrio() {
         return listabarrio;
     }
 
@@ -102,7 +102,6 @@ public class Administrador {
     public void setLstincidente(List<Incidente> lstincidente) {
         this.lstincidente = lstincidente;
     }
-    
 
     public void ValidarUsuario() {
 
@@ -2154,22 +2153,22 @@ public class Administrador {
 
         return getListabarrio();
     }
-    
-    public String reportarIncidencia(){ 
+
+    public String reportarIncidencia() {
         return "registroincidencia";
-    }   
-    
-    public void cargarBarrio(){
-        listabarrio = new ArrayList<Barrio>();
-        lstbarrio =  new ArrayList<Barrio>();
-        listabarrio = ListarBarrios();     
-        for (Barrio ls : listabarrio){
-            if (ls.getComuna() == getComuna().getCom_codigo()){
-              lstbarrio.add(ls);                
-            }          
-        }  
     }
-    
+
+    public void cargarBarrio() {
+        listabarrio = new ArrayList<Barrio>();
+        lstbarrio = new ArrayList<Barrio>();
+        listabarrio = ListarBarrios();
+        for (Barrio ls : listabarrio) {
+            if (ls.getComuna() == getComuna().getCom_codigo()) {
+                lstbarrio.add(ls);
+            }
+        }
+    }
+
     public void listarIncidente() {
         incidente = new Incidente();
         incidente.setInc_codigo(1);
@@ -2180,7 +2179,7 @@ public class Administrador {
         lstincidente.add(incidente);
         for (int i = 0; i < 10; i++) {
             incidente = new Incidente();
-            incidente.setInc_codigo(i+1);
+            incidente.setInc_codigo(i + 1);
             incidente.setBarrio(new Barrio(1));
             incidente.setInc_descripcion("Holaaa" + i);
             incidente.setInc_fecha(new Date());
@@ -2191,6 +2190,9 @@ public class Administrador {
             System.out.println("incidente" + incidente.getInc_descripcion());
         }
     }
-  
+
+    public void removerIncidente(Incidente incidente) {
+        lstincidente.remove(incidente);
+    }
 
 }
