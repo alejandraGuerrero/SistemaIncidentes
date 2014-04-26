@@ -2160,16 +2160,16 @@ public class Administrador {
     }   
     
     public void cargarBarrio(){
-        System.out.println("ingreso al metodo");
-        ListarBarrios();
-//        for (Barrio ls : listabarrio){
-//            if (ls.getComuna() == 1){
-//              lstbarrio.add(ls);                
-//            }           
-//            
-//        }       
-    
+        listabarrio = new ArrayList<Barrio>();
+        lstbarrio =  new ArrayList<Barrio>();
+        listabarrio = ListarBarrios();     
+        for (Barrio ls : listabarrio){
+            if (ls.getComuna() == getComuna().getCom_codigo()){
+              lstbarrio.add(ls);                
+            }          
+        }  
     }
+    
     public void listarIncidente() {
         incidente = new Incidente();
         incidente.setInc_codigo(1);

@@ -16,18 +16,17 @@
                 <h:outputLabel value="Registro Incidencia"/>
             </center>
             <p:outputPanel  style="width: 95%">
-                <p:commandButton update="formregistroinci" value="aqui" actionListener="#{administrador.cargarBarrio()}" immediate="true"/>
-                    <h:selectOneMenu id="selectOneMenuComuna" value="#{administrador.comuna.com_codigo}" style="width: 100%">
+S                    <h:selectOneMenu id="selectOneMenuComuna" value="#{administrador.comuna.com_codigo}" style="width: 100%">
                         <f:selectItem itemLabel="Select One" itemValue="1" />  
                         <f:selectItems value="#{administrador.listaComunas}" var="comuna" itemLabel="#{comuna.com_nombre}" itemValue="#{comuna.com_codigo}" />                              
-                        <p:ajax update="formregistroinci" event="change"
+                        <p:ajax update="selectOneMenuBarrio" event="change"
                                 listener="#{administrador.cargarBarrio()}" /> 
                     </h:selectOneMenu>
 
                     <h:outputLabel id="outputLabelBarrio" value="Barrio" style="width: 100%"/>
                     <h:selectOneMenu id="selectOneMenuBarrio" value="#{administrador.barrio.codigo_barrio}" style="width: 100%">
                         <f:selectItem itemLabel="Select One" itemValue="0" />  
-                        <f:selectItems value="#{administrador.listabarrio}" var="barrio" itemLabel="#{barrio.nombre_barrio}" itemValue="#{barrio.codigo_barrio}" />                              
+                        <f:selectItems value="#{administrador.lstbarrio}" var="barrio" itemLabel="#{barrio.nombre_barrio}" itemValue="#{barrio.codigo_barrio}" />                              
                     </h:selectOneMenu>
 
                     <h:outputLabel id="outputLabelTipoIncidencia" value="Tipo Incidencia" style="width: 100%"/>
