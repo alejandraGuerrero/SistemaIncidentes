@@ -24,6 +24,10 @@ public class Administrador {
     private Incidente incidente = new Incidente();
     private List<Barrio> lstbarrio = new ArrayList<Barrio>();
     private List<Incidente> lstincidente = new ArrayList<Incidente>();
+    private String contrasena = "";
+    private String contrasenaConfir = "";
+    private boolean habilitarEditar=false;
+    
 
     public Administrador() {
         listarComuna();
@@ -103,11 +107,37 @@ public class Administrador {
         this.lstincidente = lstincidente;
     }
 
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public String getContrasenaConfir() {
+        return contrasenaConfir;
+    }
+
+    public void setContrasenaConfir(String contrasenaConfir) {
+        this.contrasenaConfir = contrasenaConfir;
+    }
+
+    public boolean isHabilitarEditar() {
+        return habilitarEditar;
+    }
+
+    public void setHabilitarEditar(boolean habilitarEditar) {
+        this.habilitarEditar = habilitarEditar;
+    }
+    
+    
+
     public void ValidarUsuario() {
 
 //        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Bienvenido " + usuario.getUsu_nombre() + "!"));
     }
-
+    
     public final List<Comuna> listarComuna() {
 
         comuna.setCom_codigo(1);
@@ -2193,6 +2223,19 @@ public class Administrador {
 
     public void removerIncidente(Incidente incidente) {
         lstincidente.remove(incidente);
+    }
+    
+    public void editarInidente(){
+      habilitarEditar = true;  
+    }
+    
+    public void guardarModificacionIncidente(){
+        System.out.println("guardo la modificación");
+    }
+    
+    public void cancelarModificacionIncidente(){
+        System.out.println("Cancelo modificación");
+         habilitarEditar = false;  
     }
 
 }

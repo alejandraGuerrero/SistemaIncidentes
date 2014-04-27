@@ -32,7 +32,7 @@
                         <p:tab  class="style_tab_login" id="tab1" title="Ingresar">  
                             <h:panelGrid columns="2" cellpadding="10">                   
 
-                                <h:form id="form">  
+                                <h:form prependId="false" id="form">  
 
                                     <p:panel id="panel" >  
 
@@ -64,8 +64,44 @@
                         </p:tab>  
 
                         <p:tab id="tab2" title="Registrate">  
-                            <h:panelGrid columns="2" cellpadding="10">  
 
+                            <h:panelGrid columns="2" cellpadding="10">                   
+
+                                <h:form  id="form_registro">  
+
+                                    <p:panel id="panel_registro" >  
+                                        <p:messages id="msgs3"/> 
+                                        <h:panelGrid  columns="3">  
+
+                                            <h:outputLabel  value="Nombre:"  />  
+                                            <p:inputText label="Nombre"  id="registro_nombre"   required="true"
+                                                         value="#{administrador.usuario.usu_num_tel}" />  
+                                            <p:message for="registro_nombre" display="icon"/>  
+
+                                            <h:outputLabel  value="Dirección:" />  
+                                            <p:inputText id="registro_dir" value="#{administrador.usuario.usu_direccion}" label="Direccion" required="true"/>  
+                                            <p:message for="registro_dir"  display="icon"/>  
+
+                                            <h:outputLabel  value="Contraseña:(4 Digitos)" />  
+                                            <p:inputText id="registro_contra1" value="#{administrador.contrasena}" label="Contraseña" required="true">
+                                                <f:validateLength maximum="5" minimum="4" />  
+                                            </p:inputText>
+                                            <p:message for="registro_contra1"  display="icon"/>  
+
+                                            <h:outputLabel  value="Confirmar Contraseña:(4 Digitos)" />  
+                                            <p:inputText id="registro_contra2" value="#{administrador.contrasenaConfir}" label="Confirmar Contraseña" required="true">
+                                                <f:validateLength maximum="5" minimum="4" />  
+                                            </p:inputText>  
+                                            <p:message for="registro_contra2"  display="icon"/>  
+
+                                        </h:panelGrid>  
+                                        <center>
+                                            <p:commandButton  value="Registrate"/>  
+                                        </center>
+
+                                    </p:panel>  
+
+                                </h:form>   
                             </h:panelGrid>  
                         </p:tab>  
 
@@ -73,16 +109,7 @@
                 </p:layoutUnit>  
 
                 <p:layoutUnit  position="center">  
-                    <h:form>
-<!--                        <
-                        <m:map latitude="5.051552" width="100%" longitude="-75.485409" enableScrollWheelZoom="true"  id="map" 
-                               jsVariable="mapa" zoom="17"  partiallyTriggered="false"  height="300">
-                            <m:marker latitude="5.051552"  longitude="-75.485409" 
 
-                                      draggable="false" />
-
-                        </m:map>-->
-                    </h:form>  
                 </p:layoutUnit>  
 
             </p:layout>  
