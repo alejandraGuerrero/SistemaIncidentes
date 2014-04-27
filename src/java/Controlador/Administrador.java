@@ -26,8 +26,9 @@ public class Administrador {
     private List<Incidente> lstincidente = new ArrayList<Incidente>();
     private String contrasena = "";
     private String contrasenaConfir = "";
-    private boolean habilitarEditar=false;
-    
+    private boolean habilitarEditar = false;
+    private boolean boolIniciarSession = false;
+    private boolean boolRegistrarse = false;
 
     public Administrador() {
         listarComuna();
@@ -130,14 +131,53 @@ public class Administrador {
     public void setHabilitarEditar(boolean habilitarEditar) {
         this.habilitarEditar = habilitarEditar;
     }
-    
-    
 
-    public void ValidarUsuario() {
-
-//        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Bienvenido " + usuario.getUsu_nombre() + "!"));
+    public boolean getBoolIniciarSession() {
+        return boolIniciarSession;
     }
-    
+
+    public void setBoolIniciarSession(boolean boolIniciarSession) {
+        this.boolIniciarSession = boolIniciarSession;
+    }
+
+    public boolean getBoolRegistrarse() {
+        return boolRegistrarse;
+    }
+
+    public void setBoolRegistrarse(boolean boolRegistrarse) {
+        this.boolRegistrarse = boolRegistrarse;
+    }
+
+    public String validarInicioSession() {
+
+        if (!((usuario.getUsu_num_tel().equals("")) && (usuario.getUsu_pass().equals("")))) {
+            for (int w = 0; w < listausuarios.size(); w++) {
+                System.out.println("usuario = " + usuario.getUsu_num_tel());
+                if (listausuarios.get(w).getUsu_num_tel().equals(usuario.getUsu_num_tel())
+                        && listausuarios.get(w).getUsu_pass().equals(usuario.getUsu_pass())) {
+                    System.out.println("ingreso  el  usuario");
+//                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("El usuario ingresado no Existe."));
+                    return "registroincidencia";
+                } else {
+                    usuario = new Usuario();
+                    System.out.println("aqui 1");
+                    return "inicio";
+                }
+            }
+            System.out.println("aqui 3");
+            usuario = new Usuario();
+//            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("El usuario ingresado no Existe."));
+            return "inicio";
+
+        } else {
+            usuario = new Usuario();
+
+//            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("El usuario ingresado no Existe."));
+            return "inicio";
+        }
+
+    }
+
     public final List<Comuna> listarComuna() {
 
         comuna.setCom_codigo(1);
@@ -2224,18 +2264,66 @@ public class Administrador {
     public void removerIncidente(Incidente incidente) {
         lstincidente.remove(incidente);
     }
-    
-    public void editarInidente(){
-      habilitarEditar = true;  
-    }
-    
-    public void guardarModificacionIncidente(){
-        System.out.println("guardo la modificación");
-    }
-    
-    public void cancelarModificacionIncidente(){
-        System.out.println("Cancelo modificación");
-         habilitarEditar = false;  
+
+    public void editarInidente() {
+        habilitarEditar = true;
     }
 
+    public void guardarModificacionIncidente() {
+        System.out.println("guardo la modificación");
+    }
+
+    public void cancelarModificacionIncidente() {
+        System.out.println("Cancelo modificación");
+        habilitarEditar = false;
+    }
+
+    public void inciarSession() {
+        System.out.println("aquii1");
+        boolIniciarSession = true;
+        boolRegistrarse = false;
+    }
+
+    public void registrase() {
+        System.out.println("aquii3");
+        boolIniciarSession = false;
+        boolRegistrarse = true;
+    }
+
+    public void cancelarInicio() {
+        boolIniciarSession = false;
+        boolRegistrarse = false;
+    }
+
+    public String registrarCiudadano() {
+        if (!(usuario.getUsu_num_tel().equals("") && usuario.getUsu_direccion().equals("") && contrasena.equals("") && contrasenaConfir.equals(""))) {
+            if (contrasena.equals(contrasenaConfir)) {
+                usuario.setUsu_pass(contrasena);
+                usuario.setUsu_codigo(listausuarios.size() + 1);
+                usuario.setUsu_fech_regis(new Date());
+                listausuarios.add(usuario);
+//            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("El usuario ha sido ingresado con exito"));
+                for (Usuario usuario1 : listausuarios) {
+                    System.out.println("nombres " + usuario1.getUsu_num_tel());
+                }
+                usuario = new Usuario();
+                contrasena = "";
+                contrasenaConfir = "";
+                return "registroincidencia";
+            } else {
+                return "inicio";
+            }
+        } else {
+            return "inicio";
+        }
+    }
+
+    public String cerrarSession() {
+        usuario = new Usuario();
+        contrasena = "";
+        contrasenaConfir = "";
+        boolIniciarSession = false;
+        boolRegistrarse = false;
+        return "inicio";
+    }
 }

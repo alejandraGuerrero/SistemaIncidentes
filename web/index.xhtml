@@ -1,9 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>.._Proyecto_..</title>
         <link href="#{facesContext.externalContext.requestContextPath}/resorces/style.css" rel="stylesheet" type="text/css"/>  
@@ -14,102 +15,94 @@
         <h:form styleClass="style_superior">
             <p:layout styleClass="style_layoutUnit style_superior" fullPage="true">  
 
-                <p:layoutUnit  styleClass="style_layoutUnit"  position="north" size="100"  resizable="true" closable="true" collapsible="true">  
-                    <h:outputText value="Nombre proyecto" />  
+                <p:layoutUnit style="height:120px!important" styleClass="style_layoutUnit"  position="north" size="100"  resizable="true" closable="true" collapsible="true">  
+                    <p:graphicImage height="78px"   width="1251"  url="/resorces/imgs/manizales_he_83.png"/>  
+                    <h:outputText  styleClass="titulo_principal" value="SISTEMA  DE  INCIDENTES"/>
                 </p:layoutUnit>  
 
                 <p:layoutUnit styleClass="style_layoutUnit" position="south" size="100"  resizable="true" closable="true" collapsible="true">  
                     <h:outputText value="Pie de pagina" />  
                 </p:layoutUnit>  
 
-                <!--                <p:layoutUnit position="west" size="200"  resizable="true" closable="true" collapsible="true">  
-                                    <h:outputText value="Contenido 1" />  
-                                </p:layoutUnit>  -->
+
 
                 <p:layoutUnit styleClass="style_layoutUnit" position="east" size="500"  resizable="true" closable="true" collapsible="true" effect="drop">  
 
-                    <p:tabView  styleClass="style_tab_login " id="tabView" >  
-                        <p:tab  class="style_tab_login" id="tab1" title="Ingresar">  
-                            <h:panelGrid columns="2" cellpadding="10">                   
+                    <h:panelGrid id="panel_inicial" columns="2" cellpadding="10">                   
+                        <h:form  id="form_registro"> 
 
-                                <h:form prependId="false" id="form">  
+                            <h:panelGrid cellspacing="20" cellpadding="10" id="panel_infoinicial" rendered="#{!administrador.boolIniciarSession and !administrador.boolRegistrarse}" >
+                                <h:commandButton style="background: rgb(8, 48, 71);color: rgb(255, 255, 255);" styleClass="button_inicio"  action="#{administrador.registrase()}" value="Registrate"/>  
+                                <h:commandButton style="background: rgb(8, 48, 71);color: rgb(255, 255, 255);" styleClass="button_inicio" action="#{administrador.inciarSession()}" value="Iniciar  Sesión"/>  
 
-                                    <p:panel id="panel" >  
+                            </h:panelGrid>
+                            <p:panel rendered="#{administrador.boolIniciarSession}" id="panel" >  
 
-                                        <p:messages id="msgs"/>  
+                                <p:messages id="msgs"/>  
 
-                                        <h:panelGrid columns="3">  
-                                            <h:outputLabel for="firstname" value="Usuario: *" />  
-                                            <p:inputText id="firstname" value="#{administrador.usuario.usu_num_tel}" required="true" label="Firstname">  
-                                                <f:validateLength minimum="2" />  
-                                            </p:inputText>  
-                                            <p:message for="firstname" display="icon"/>  
+                                <h:panelGrid   columns="3">  
+                                    <h:outputLabel for="firstname" value="Usuario: *" />  
+                                    <p:inputText id="firstname" value="#{administrador.usuario.usu_num_tel}" required="true" label="Firstname">  
+                                        <f:validateLength minimum="2" />  
+                                    </p:inputText>  
+                                    <p:message for="firstname" display="icon"/>  
 
-                                            <h:outputLabel for="surname" value="Codigo: *" />  
-                                            <h:inputSecret id="surname" value="#{administrador.usuario.usu_pass}" label="Surname" required="true">  
-                                                <f:validateLength minimum="2" />  
-                                                <p:ajax update="msgSurname" event="keyup" />  
-                                            </h:inputSecret>  
-                                            <p:message for="surname" id="msgSurname" display="icon"/>  
+                                    <h:outputLabel for="surname" value="Codigo: *" />  
+                                    <h:inputSecret id="surname" value="#{administrador.usuario.usu_pass}" label="Surname" required="true">  
+                                         <f:validateLength maximum="5" minimum="4" />   
+                                        <p:ajax update="msgSurname" event="keyup" />  
+                                    </h:inputSecret>  
+                                    <p:message for="surname" id="msgSurname" display="icon"/>  
 
-                                        </h:panelGrid>  
-                                        <center>
-                                            <p:commandButton id="btn" value="Ingresar" update="panel" action="registroincidencia"/>  
-                                        </center>
-                                    </p:panel>  
+                                </h:panelGrid>  
+                                <center>
+                                     <h:panelGrid columns="2">
+                                         <h:commandButton id="btn" value="Ingresar"  action="#{administrador.validarInicioSession()}"/>  
+                                    <h:commandButton immediate="true" id="btn_cacelar" value="Cancelar" action="#{administrador.cancelarInicio()}"/>
+                                     </h:panelGrid>
+                                </center>
+                            </p:panel>  
 
-                                </h:form>  
+                            <p:panel id="panel_registro" rendered="#{administrador.boolRegistrarse}" >  
+                                <p:messages id="msgs3"/> 
+                                <h:panelGrid  columns="3">  
 
-                            </h:panelGrid>  
-                        </p:tab>  
+                                    <h:outputLabel  value="Telefono"  />  
+                                    <p:inputText label="Telefono"  id="registro_nombre"   required="true"
+                                                 value="#{administrador.usuario.usu_num_tel}" />  
+                                    <p:message for="registro_nombre" display="icon"/>  
 
-                        <p:tab id="tab2" title="Registrate">  
+                                    <h:outputLabel  value="Dirección:" />  
+                                    <p:inputText id="registro_dir" value="#{administrador.usuario.usu_direccion}" label="Direccion" required="true"/>  
+                                    <p:message for="registro_dir"  display="icon"/>  
 
-                            <h:panelGrid columns="2" cellpadding="10">                   
+                                    <h:outputLabel  value="Contraseña:(4 Digitos)" />  
+                                    <p:inputText id="registro_contra1" value="#{administrador.contrasena}" label="Contraseña" required="true">
+                                        <f:validateLength maximum="5" minimum="4" />  
+                                    </p:inputText>
+                                    <p:message for="registro_contra1"  display="icon"/>  
 
-                                <h:form  id="form_registro">  
+                                    <h:outputLabel  value="Confirmar Contraseña:(4 Digitos)" />  
+                                    <p:inputText id="registro_contra2" value="#{administrador.contrasenaConfir}" label="Confirmar Contraseña" required="true">
+                                        <f:validateLength maximum="5" minimum="4" />  
+                                    </p:inputText>  
+                                    <p:message for="registro_contra2"  display="icon"/>  
 
-                                    <p:panel id="panel_registro" >  
-                                        <p:messages id="msgs3"/> 
-                                        <h:panelGrid  columns="3">  
+                                </h:panelGrid>  
+                                <center>
+                                    <h:panelGrid columns="2">
+                                        <h:commandButton  action="#{administrador.registrarCiudadano()}" value="Registrate"/> 
+                                    <h:commandButton  immediate="true" id="btn_cancelar_regis" value="Cancelar"  action="#{administrador.cancelarInicio()}"/>
+                                    </h:panelGrid>
+                                </center>
 
-                                            <h:outputLabel  value="Nombre:"  />  
-                                            <p:inputText label="Nombre"  id="registro_nombre"   required="true"
-                                                         value="#{administrador.usuario.usu_num_tel}" />  
-                                            <p:message for="registro_nombre" display="icon"/>  
-
-                                            <h:outputLabel  value="Dirección:" />  
-                                            <p:inputText id="registro_dir" value="#{administrador.usuario.usu_direccion}" label="Direccion" required="true"/>  
-                                            <p:message for="registro_dir"  display="icon"/>  
-
-                                            <h:outputLabel  value="Contraseña:(4 Digitos)" />  
-                                            <p:inputText id="registro_contra1" value="#{administrador.contrasena}" label="Contraseña" required="true">
-                                                <f:validateLength maximum="5" minimum="4" />  
-                                            </p:inputText>
-                                            <p:message for="registro_contra1"  display="icon"/>  
-
-                                            <h:outputLabel  value="Confirmar Contraseña:(4 Digitos)" />  
-                                            <p:inputText id="registro_contra2" value="#{administrador.contrasenaConfir}" label="Confirmar Contraseña" required="true">
-                                                <f:validateLength maximum="5" minimum="4" />  
-                                            </p:inputText>  
-                                            <p:message for="registro_contra2"  display="icon"/>  
-
-                                        </h:panelGrid>  
-                                        <center>
-                                            <p:commandButton  value="Registrate"/>  
-                                        </center>
-
-                                    </p:panel>  
-
-                                </h:form>   
-                            </h:panelGrid>  
-                        </p:tab>  
-
-                    </p:tabView>
+                            </p:panel>  
+                        </h:form>   
+                    </h:panelGrid>  
                 </p:layoutUnit>  
 
                 <p:layoutUnit  position="center">  
-
+                    <p:graphicImage url="/resorces/imgs/mapa.png"/>  
                 </p:layoutUnit>  
 
             </p:layout>  
@@ -119,5 +112,5 @@
         </h:form>
     </h:body>
 
-</html>
+</ui:composition>
 

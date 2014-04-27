@@ -14,6 +14,7 @@
         <h:form id="formregistroinci">
             <center>
                 <h:outputLabel value="Registro Incidencia"/>
+                <h:commandButton style="background: rgb(8, 48, 71);color: rgb(255, 255, 255);" styleClass="button_inicio"  action="#{administrador.cerrarSession()}" value="Salir"/>  
             </center>
             <p:outputPanel  style="width: 95%">
 S                    <h:selectOneMenu id="selectOneMenuComuna" value="#{administrador.comuna.com_codigo}" style="width: 100%">
