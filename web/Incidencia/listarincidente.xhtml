@@ -49,12 +49,12 @@
 
                 <p:column headerText="Barrio" style="width:24%">  
                     <h:outputText  rendered="#{!administrador.habilitarEditar}" value="#{car.barrio.nombre_barrio}"/> 
-                    <h:inputText  rendered="#{administrador.habilitarEditar}" value="#{car.barrio.nombre_barrio}"/> 
+                    <h:inputText disabled="true" rendered="#{administrador.habilitarEditar}" value="#{car.barrio.nombre_barrio}"/> 
                 </p:column>
 
                 <p:column headerText="Comuna" style="width:24%">  
                     <h:outputText  rendered="#{!administrador.habilitarEditar}" value="#{car.barrio.comuna}"/> 
-                    <h:inputText  rendered="#{administrador.habilitarEditar}" value="#{car.barrio.comuna}"/> 
+                    <h:inputText disabled="true" rendered="#{administrador.habilitarEditar}" value="#{car.barrio.comuna}"/> 
                 </p:column>  
 
                 <p:column headerText="Usuario Registro" style="width:24%">  
