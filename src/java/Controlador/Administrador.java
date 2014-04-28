@@ -33,7 +33,7 @@ public class Administrador {
     public Administrador() {
         listarComuna();
         usuario = new Usuario();
-        listarIncidente();
+        incidente = new Incidente();
     }
 
     public List<Usuario> getListausuarios() {
@@ -179,61 +179,61 @@ public class Administrador {
     }
 
     public final List<Comuna> listarComuna() {
+        Comuna comunas = new Comuna();
+        comunas.setCom_codigo(1);
+        comunas.setCom_nombre("COMUNA ATARDECERES");
+        getListaComunas().add(comunas);
+        comunas = new Comuna();
 
-        comuna.setCom_codigo(1);
-        comuna.setCom_nombre("COMUNA ATARDECERES");
-        getListaComunas().add(comuna);
-        comuna = new Comuna();
+        comunas.setCom_codigo(2);
+        comunas.setCom_nombre("COMUNA SAN JOSÉ");
+        getListaComunas().add(comunas);
+        comunas = new Comuna();
 
-        comuna.setCom_codigo(2);
-        comuna.setCom_nombre("COMUNA SAN JOSÉ");
-        getListaComunas().add(comuna);
-        comuna = new Comuna();
+        comunas.setCom_codigo(3);
+        comunas.setCom_nombre("COMUNA CUMANDAY");
+        getListaComunas().add(comunas);
+        comunas = new Comuna();
 
-        comuna.setCom_codigo(3);
-        comuna.setCom_nombre("COMUNA CUMANDAY");
-        getListaComunas().add(comuna);
-        comuna = new Comuna();
+        comunas.setCom_codigo(4);
+        comunas.setCom_nombre("COMUNA ESTACIÓN");
+        getListaComunas().add(comunas);
+        comunas = new Comuna();
 
-        comuna.setCom_codigo(4);
-        comuna.setCom_nombre("COMUNA ESTACIÓN");
-        getListaComunas().add(comuna);
-        comuna = new Comuna();
+        comunas.setCom_codigo(5);
+        comunas.setCom_nombre("COMUNA CIUDADELA DEL NORTE");
+        getListaComunas().add(comunas);
+        comunas = new Comuna();
 
-        comuna.setCom_codigo(5);
-        comuna.setCom_nombre("COMUNA CIUDADELA DEL NORTE");
-        getListaComunas().add(comuna);
-        comuna = new Comuna();
+        comunas.setCom_codigo(6);
+        comunas.setCom_nombre("COMUNA ECOTURÍSTICO CERRO DE ORO");
+        getListaComunas().add(comunas);
+        comunas = new Comuna();
 
-        comuna.setCom_codigo(6);
-        comuna.setCom_nombre("COMUNA ECOTURÍSTICO CERRO DE ORO");
-        getListaComunas().add(comuna);
-        comuna = new Comuna();
+        comunas.setCom_codigo(7);
+        comunas.setCom_nombre("COMUNA TESORITO");
+        getListaComunas().add(comunas);
+        comunas = new Comuna();
 
-        comuna.setCom_codigo(7);
-        comuna.setCom_nombre("COMUNA TESORITO");
-        getListaComunas().add(comuna);
-        comuna = new Comuna();
+        comunas.setCom_codigo(8);
+        comunas.setCom_nombre("COMUNA PALOGRANDE");
+        getListaComunas().add(comunas);
+        comunas = new Comuna();
 
-        comuna.setCom_codigo(8);
-        comuna.setCom_nombre("COMUNA PALOGRANDE");
-        getListaComunas().add(comuna);
-        comuna = new Comuna();
+        comunas.setCom_codigo(9);
+        comunas.setCom_nombre("COMUNA UNIVERSITARIA");
+        getListaComunas().add(comunas);
+        comunas = new Comuna();
 
-        comuna.setCom_codigo(9);
-        comuna.setCom_nombre("COMUNA UNIVERSITARIA");
-        getListaComunas().add(comuna);
-        comuna = new Comuna();
+        comunas.setCom_codigo(10);
+        comunas.setCom_nombre("COMUNA LA FUENTE");
+        getListaComunas().add(comunas);
+        comunas = new Comuna();
 
-        comuna.setCom_codigo(10);
-        comuna.setCom_nombre("COMUNA LA FUENTE");
-        getListaComunas().add(comuna);
-        comuna = new Comuna();
-
-        comuna.setCom_codigo(11);
-        comuna.setCom_nombre("COMUNA LA MACARENA");
-        getListaComunas().add(comuna);
-
+        comunas.setCom_codigo(11);
+        comunas.setCom_nombre("COMUNA LA MACARENA");
+        getListaComunas().add(comunas);
+        comunas = new Comuna();
         return getListaComunas();
 
     }
@@ -2239,28 +2239,6 @@ public class Administrador {
         }
     }
 
-    public void listarIncidente() {
-        incidente = new Incidente();
-        incidente.setInc_codigo(1);
-        incidente.setBarrio(new Barrio(1));
-        incidente.setInc_descripcion("Holaaa");
-        incidente.setInc_fecha(new Date());
-        incidente.setTipoIncidente(new TipoIncidente());
-        lstincidente.add(incidente);
-        for (int i = 0; i < 10; i++) {
-            incidente = new Incidente();
-            incidente.setInc_codigo(i + 1);
-            incidente.setBarrio(new Barrio(1));
-            incidente.setInc_descripcion("Holaaa" + i);
-            incidente.setInc_fecha(new Date());
-            incidente.setTipoIncidente(new TipoIncidente());
-            lstincidente.add(incidente);
-        }
-        for (Incidente incidente : lstincidente) {
-            System.out.println("incidente" + incidente.getInc_descripcion());
-        }
-    }
-
     public void removerIncidente(Incidente incidente) {
         lstincidente.remove(incidente);
     }
@@ -2325,5 +2303,29 @@ public class Administrador {
         boolIniciarSession = false;
         boolRegistrarse = false;
         return "inicio";
+    }
+
+    public void agregarIndicente() {
+        listaComunas = new ArrayList<Comuna>();
+        listabarrio = new ArrayList<Barrio>();
+        listaComunas = listarComuna();
+        listabarrio = ListarBarrios();
+        incidente.setBarrio(new Barrio());
+        System.out.println("ingreso al metodo");
+        for (Comuna lc : listaComunas) {       
+            System.out.println(lc.getCom_nombre());
+            if (lc.getCom_codigo() == getComuna().getCom_codigo()) {
+                incidente.getBarrio().setNombre_comuna(lc.getCom_nombre());
+            }
+        }
+        for (Barrio lb : ListarBarrios()) {
+            if (lb.getCodigo_barrio() == getBarrio().getCodigo_barrio()) {
+                incidente.getBarrio().setNombre_barrio(lb.getNombre_barrio());
+            }
+        }
+        incidente.setInc_fecha(new Date());
+        incidente.setInc_codigo(lstincidente.size() + 1);
+        lstincidente.add(incidente);
+        incidente = new Incidente();
     }
 }

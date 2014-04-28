@@ -7,6 +7,7 @@ public class Barrio {
     private String nombre_barrio;
     private String string_est_codigo;
     private int comuna;
+    private String nombre_comuna;
  
 
     public Barrio() {
@@ -58,7 +59,12 @@ public class Barrio {
     public void setString_est_codigo(String string_est_codigo) {
         this.string_est_codigo = string_est_codigo;
     }
-    
-    
-  
+
+    public String getNombre_comuna() {
+        return nombre_comuna;
+    }
+
+    public void setNombre_comuna(String nombre_comuna) {
+        this.nombre_comuna = nombre_comuna;
+    }
 }

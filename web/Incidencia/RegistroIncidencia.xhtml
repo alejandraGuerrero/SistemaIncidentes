@@ -39,6 +39,7 @@ S                    <h:selectOneMenu id="selectOneMenuComuna" value="#{administ
 
                     <h:outputLabel id="outputLabelDescripcion" value="Descripción" style="width: 100%"/>
                     <h:inputText id="inputTextDescripcion" value="#{administrador.incidente.inc_descripcion}" title="Descripción" style="width: 100%"/>
+                    <p:commandButton id="commandButtonAgregarIndicente" actionListener="#{administrador.agregarIndicente()}" update="formlistarincidente:datatablelistaincidente"/>
             </p:outputPanel>
             
             <h:panelGroup>
